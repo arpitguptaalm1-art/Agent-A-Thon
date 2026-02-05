@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Seva Portal - Discover Your Benefits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* SCIENTIFIC COLOR PALETTE - LIGHT MODE */
+        :root {
+            /* Primary Colors */
+            --primary-blue: #0B3C5D;
+            --secondary-green: #1C7C54;
+            --accent-saffron: #FF9933;
+
+            /* Backgrounds */
+            --bg-primary: #F5F7FA;
+            --bg-secondary: #FFFFFF;
+            --bg-card: rgba(255, 255, 255, 0.85);
+
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+
+            /* UI Elements */
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(11, 60, 93, 0.15);
+            --shadow: rgba(11, 60, 93, 0.12);
+            --shadow-hover: rgba(11, 60, 93, 0.2);
+
+            /* Contrast Multiplier for Elderly Mode */
+            --contrast-boost: 1;
+        }
+
+        /* SCIENTIFIC COLOR PALETTE - DARK MODE */
+        [data-theme="dark"] {
+            /* Backgrounds */
+            --bg-primary: #0A192F;
+            --bg-secondary: #112240;
+            --bg-card: rgba(17, 34, 64, 0.85);
+
+            /* Text Colors - WHITE in dark mode */
+            --text-primary: #FFFFFF;
+            --text-secondary: #D1D5DB;
+            --text-muted: #9CA3AF;
+
+            /* Accent Adjustments for Dark Mode */
+            --accent-saffron: #FFB703;
+
+            /* UI Elements */
+            --glass-bg: rgba(17, 34, 64, 0.75);
+            --glass-border: rgba(230, 241, 255, 0.1);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --shadow-hover: rgba(0, 0, 0, 0.6);
+        }
+
+        /* ELDERLY MODE - INCREASED CONTRAST */
+        [data-elderly="true"] {
+            --contrast-boost: 1.2;
+        }
+
+        [data-theme="dark"][data-elderly="true"] {
+            --text-primary: #FFFFFF;
+            --accent-saffron: #FFC933;
+        }
+
+        body {
+            font-family: 'Hind', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Ashok Chakra Background - Continuous Smooth Rotation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 900px;
+            height: 900px;
+            margin-left: -450px;
+            margin-top: -450px;
+            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAAD/4QBWRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAITAAMAAAABAAEAAAAAAAAAAAEsAAAAAQAAASwAAAAB/+0ALFBob3Rvc2hvcCAzLjAAOEJJTQQEAAAAAAAPHAFaAAMbJUccAQAAAgAEAP/hDW5odHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvADw/eHBhY2tldCBiZWdpbj0n77u/JyBpZD0nVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkJz8+Cjx4OnhtcG1ldGEgeG1sbnM6eD0nYWRvYmU6bnM6bWV0YS8nIHg6eG1wdGs9J0ltYWdlOjpFeGlmVG9vbCAxMS44OCc+CjxyZGY6UkRGIHhtbG5zOnJkZj0naHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyc+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczp0aWZmPSdodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyc+CiAgPHRpZmY6UmVzb2x1dGlvblVuaXQ+MjwvdGlmZjpSZXNvbHV0aW9uVW5pdD4KICA8dGlmZjpYUmVzb2x1dGlvbj4zMDAvMTwvdGlmZjpYUmVzb2x1dGlvbj4KICA8dGlmZjpZUmVzb2x1dGlvbj4zMDAvMTwvdGlmZjpZUmVzb2x1dGlvbj4KIDwvcmRmOkRlc2NyaXB0aW9uPgoKIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PScnCiAgeG1sbnM6eG1wPSdodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvJz4KICA8eG1wOkNyZWF0b3JUb29sPkFkb2JlIFN0b2NrIFBsYXRmb3JtPC94bXA6Q3JlYXRvclRvb2w+CiA8L3JkZjpEZXNjcmlwdGlvbj4KCiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogIHhtbG5zOnhtcE1NPSdodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vJz4KICA8eG1wTU06RG9jdW1lbnRJRD54bXAuaWlkOjExMmMyNjMxLTI2NTctNDg2NC05MDNmLTAxZDc0MTNkYWU0MDwveG1wTU06RG9jdW1lbnRJRD4KICA8eG1wTU06SW5zdGFuY2VJRD5hZG9iZTpkb2NpZDpzdG9jazpiMWNmZTdlZC0wN2RmLTQ2NjItYTllYy1jYzhlZjNhZmFhZTM8L3htcE1NOkluc3RhbmNlSUQ+CiAgPHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD5hZG9iZTpkb2NpZDpzdG9jazo2NTA5MDYzNDA8L3htcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD4KIDwvcmRmOkRlc2NyaXB0aW9uPgo8L3JkZjpSREY+CjwveDp4bXBtZXRhPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo8P3hwYWNrZXQgZW5kPSd3Jz8+/9sAQwAFAwQEBAMFBAQEBQUFBgcMCAcHBwcPCwsJDBEPEhIRDxERExYcFxMUGhURERghGBodHR8fHxMXIiQiHiQcHh8e/9sAQwEFBQUHBgcOCAgOHhQRFB4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e/8AAEQgBaAFoAwERAAIRAQMRAf/EABwAAAICAwEBAAAAAAAAAAAAAAAHBAgDBAgBAv/EAFgQAAEDAwEFBAUIBgYGBggHAAECAwQABREGBxIhMUETUWFxFCIygZEVM0JSYnKhsQgzgpKiwRYkQ1RzsmODo8LR8BclNGSk4TVEVGV0hLPSN0V1w9Pi8f/EABsBAAIDAQEBAAAAAAAAAAAAAAAFAgQGAgEH/8QAQREAAQMCBAIFBgMIAQQDAQEAAQACAwQRBRIhMUFRE2FxgZGh8CIyscHR4RQjQgYVJCUzYqLxUpKCgrIWU3Jjgv/aAAwDAQACEQMRAD8A7LoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEIoQihCKEL5dacQ6gKbcQpCkniCkgg+0UIXy00hptLTaEoQkBKUpGAkDkAOAFCFXraNtCgaciuWuzPIuF9UApLKTkMMH+1X1PUJPxz46sji6FtzeToOZ+QTGmgMs1tkOJ1VV0xoS+6vkJuV6lpVa47mpYMM5JHgV+IHs+fCqH73ijPss8x+Q/KrcNI+TXQdZT82fW23a2Bm3Wuw6haQO0akIdZcVjjhUcqSAe7erL+zqaW7o8p6tPNUTh0zfZddXK46g2g6SjIt1zu7LMhxIG+kKBWf7aP3U+XlVR+E08hubE9XxVtuFzP2Wlq+46ouk2NeI+otQtzoqsORisl9k+a0HI87etWm0dOWOjfS0uDxKlS4oOje0u7VZ9nO2C06vQls9jakgApZf4EeS+h/EeFJsRwnpR0kQv15/JPKPFhJZkn5qzLbLrLCHG1JWhQBCkqBBHMYNJV9Fc0NIoQihCr21rWB0np9MO2ui3anmo7a2udXBa0jqyg9CeZ5cSNRTwdNIL+6Np4961MFN0EQBA1Op+S+LFp+La27S9H+j3CQiPCVxaTvBaZTv1lAdhJ4Adb1R1EsFBGZH6uNwztP2C+caOky1ErYW6N18U+4sJmI3HjxmkNsoSG0NtJ3UhPADHIZrl7y49pXWUNFguZ9tm1e46puD1ssb7sO0IUW1LAI9KeH0j9Uc/Ew+NZyuqnzG1tFo8Owxsdrf3j3e5U61q4MxhptNt7V3ukWS6EbvaMg4wevwqvT65YQAkE3zrHCxdOIwpPy5kpPdCMgd/fRjla+W2oXjmnUqJ1DeeychMzO5v3FaR/dN+0o+a+I93gaiLrauA7irIZmd0ULqmE/KKTvvOZJU4sf3rh/kK51NURUbPaOY+gVhsRdotT0JaYO+rWMIoB9aHHzjyz6y/eQPCvC8Dql4zX7vqu+jwCh1BJfvrR3SBp+/rUfcaowknzUVf5arSVr33Da+o3WGLjKXk3Q4J9M0vLbBym7Wk4B/1yP8A3j4Uyh/aKoj01B79VD+HTMGzh8/slZdbbMtkhcG4RXIsgDPZupKTjqO8eIyKb07xJGHt2IVKZjo3lj9ws/wvJ/s0/EVP8NHxK5/F1HBaX6ybn+jN//lB/hXX4eHiue0VXwWz8jXH9Xd/5R/hXn4eHivf3jW/lXtrt7lw1BKhNhG+Iaz7X/qEZJ9wrKYriTqGqbEw7EHu8l9HwSiZX0j5Zhe4I8f/ABW/tbgCb7PStJClxoqg56p3VqwPfuGq/wCJr/baPXlbyVg4JQN1Ll3CtoXNFCEUIXqVpWMpUlQ7wc0IWta9d6K3vuq57RCskh0k4A3ilOefq5x7qkII+CivlXb+m38OSS7bXbsO2B6VfuWpYC4bShhPapCglTjqQoIbRnBWrBJA86r4lW/h4hY6kg+Kk2Lma1PqD2itR0xFiSVTwjH9u6VqyO7JwKzVXiLq6XpJNtg3YLYU1K2nZkGvM70XPbDri7a6nTdlvtxjx2EpdD1s9pI3gMb6lqSomr+H0dPCySWMXJt5+5IauqqJi2N+g1P2TG0hqKDqq1Mlhe8tl5xhlwd7alHH3+uh8auVNO6meJD1eKYUtQyqjMZGnT7K8pTuoHKiVQJX4AYHdXirXPlKmjiFUvFKr7qN/wDWFh/wufy1b/CVnArkNZ8hN+a7/kGN/g5/jUehqOC8LonCxSS1xJ+cL4s3/dRv/bNU+hmdxXuem/tVz0zp1u32FhL7KFyXQt+S4ogqW6pR8AOBCR3AZqOK1hqpzmFgBYJjhNF0MYvqTs1dS0pCUgJGABgDuFZ9an3ihCKEJC/pIaAdvmk0ana3jcLCsvqH0mFncf8A4T17Kz8aZ4JOWVBh/cFT+8BFHc7hcm26bKulGkTbZdHokonOmKo+k2143mPrJA4LQc8O/NXpcLY5we3yv9VI1BK1HpqG48lx1p5t8uXCuzkFhOTvPPtJA/zK1J3W1rVKK6IuyRucek33Ki+wWiznfQRpVhRUCM9ovOVHwQnCR7yqp/w9Xu7yHyXn4ulZ7g8VY7LFRZkNgEBLLTe6lAVve0BxPf7zSGuqnVUrnc0wwukFJC1t9VnuEPfxvFT3IjA/ZHCtZhtNlHSOC83bNvw+BvNSehbVLa1A+4pvcYZiKUsngeOpWEj94+VUpKscFo8aqI3UtrgXv5KN1ZG1tsLbpK6ltWW5YW/fX3FDJwmK2hOfeojySpPfSp1R+8B0VE3Mxt8zuey6eYJRfC33XO1tNwc0pcI1oeZbuDnpaIql5S0XC2AyhwjgpW6vhnpVviCnj/ExPqHOsw2vrsv1wTsC5jdl5LnK1ajU5pK1oy32ydBG8ORbUW0d2OYpKPaKu4eDj8DGfl80yH/8+OsL+Pd+kKP6vb4OkL7HaSkJd7G8ynAO40t4DPiUI/Or2H4f0dRkvrYnvA+qVYr+Jbu65q+q3yg/aVV9nG0W7aGv54jL7xCE0QHVJ4LYcwpOejSDwPeD1pdi1C2pi0+XkmWCYhJRO1+fyb1vQtoWhbRq61JuFueU6VL3QD3KP1hXzPEMMloagy0zgbW8/Bf0HhOLU2LUokd7LrH1B/wvSKz0av/Z');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            filter: contrast(1.2) brightness(1.1);
+            animation: rotateChakra 60s linear infinite;
+        }
+
+        @keyframes rotateChakra {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        [data-theme="dark"] body::before {
+            opacity: 0.15;
+            filter: contrast(1.3) brightness(1.5) invert(1);
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            filter: brightness(0.9);
+            /* Removed blur to keep image crisp */
+            transition: background-image 0.5s ease;
+        }
+
+        [data-theme="dark"] .background-container {
+            background-image: url('dark_background.png');
+        }
+
+        .dark_background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('dark_background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            filter: brightness(0.9);
+            /* Removed blur to keep image crisp */
+        }
+
+        /* Subtle gradient overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(28, 124, 84, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 153, 51, 0.03) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            backdrop-filter: blur(10px);
+            background: var(--glass-bg rgba(255, 255, 255, 0.2));
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 12px var(--shadow);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-emblem {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+            background-color: #000;
+            /* round background */
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 700;
+            color: #fff;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f5f5f5;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        [data-theme="dark"] .logo-main {
+            color: #FFFFFF;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: #f5f5f5;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        [data-theme="dark"] .logo-sub {
+            color: #D1D5DB;
+        }
+
+        .controls {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        /* Toggle Switch - WCAG Compliant */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        .toggle-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        /* Dark Mode Toggle - Blue when active */
+        .toggle-switch {
+            position: relative;
+            width: 56px;
+            height: 32px;
+            background: var(--text-muted);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--glass-border);
+        }
+
+        .toggle-switch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .toggle-switch.active.dark-mode-toggle {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        /* Elderly Mode Toggle - Green when active (accessibility) */
+        .toggle-switch.active.elderly-toggle {
+            background: var(--secondary-green);
+            border-color: var(--secondary-green);
+        }
+
+        /* Larger toggle for elderly mode (motor accessibility) */
+        .elderly-toggle {
+            width: 64px;
+            height: 36px;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .elderly-toggle .toggle-slider {
+            width: 28px;
+            height: 28px;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .elderly-toggle.active .toggle-slider {
+            transform: translateX(28px);
+        }
+
+        /* Icon indicators in toggles */
+        .toggle-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.875rem;
+            color: white;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .toggle-icon.moon {
+            left: 8px;
+            opacity: 0;
+        }
+
+        .toggle-icon.sun {
+            right: 8px;
+            opacity: 1;
+        }
+
+        .toggle-icon.elder {
+            left: 8px;
+            opacity: 1;
+        }
+
+        .toggle-icon.young {
+            right: 8px;
+            opacity: 1;
+        }
+
+        .toggle-switch.active .toggle-icon.moon {
+            opacity: 1;
+        }
+
+        .toggle-switch.active .toggle-icon.sun {
+            opacity: 0;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Tiro Devanagari Hindi', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .hero h1 {
+            color: #089f4a;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--accent-saffron);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #f5f5f5;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        /* Glass Card Form */
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: var(--glass-bg rgba(255, 255, 255, 0.2));
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px var(--shadow);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f5f5f5;
+            ;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .form-title {
+            color: #FFFFFF;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #f5f5f5;
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.625rem;
+        }
+
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        /* WCAG Compliant Contrast Ratio ≥ 4.5:1 */
+        .form-group input,
+        .form-group select {
+            padding: 1.125rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Hind', sans-serif;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-green);
+            box-shadow: 0 0 0 4px rgba(28, 124, 84, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-group input:hover,
+        .form-group select:hover {
+            border-color: #0A192F;
+        }
+
+        /* Primary Button - Green (Government Action) */
+        .submit-btn {
+            width: 100%;
+            padding: 1.375rem;
+            background: linear-gradient(135deg, var(--secondary-green), #147d50);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            font-family: 'Hind', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 6px 20px rgba(28, 124, 84, 0.25);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(28, 124, 84, 0.35);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Results Section */
+        .results {
+            margin-top: 4rem;
+            display: none;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .results-header h2 {
+            font-size: 2.5rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        [data-theme="dark"] .results-header h2 {
+            color: #FFFFFF;
+        }
+
+        .results-header p {
+            color: #000;
+            font-size: 1.125rem;
+        }
+
+        .scheme-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2.25rem;
+            margin-bottom: 1.75rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px var(--shadow-hover);
+            border-color: var(--secondary-green);
+        }
+
+        .scheme-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.25rem;
+            gap: 1rem;
+        }
+
+        .scheme-title {
+            font-size: 1.625rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            line-height: 1.3;
+        }
+
+        [data-theme="dark"] .scheme-title {
+            color: #FFFFFF;
+        }
+
+        .scheme-badge {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            background: rgba(255, 153, 51, 0.12);
+            color: var(--accent-saffron);
+            border-radius: 24px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 153, 51, 0.2);
+        }
+
+        .scheme-details {
+            margin-top: 1.5rem;
+        }
+
+        .detail-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-section h4 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--secondary-green);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin-bottom: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-section h4::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: var(--secondary-green);
+            border-radius: 2px;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-section li {
+            padding: 0.625rem 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .detail-section li::before {
+            content: '✓';
+            color: var(--secondary-green);
+            font-weight: bold;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .scheme-cta {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .scheme-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .scheme-btn-primary {
+            background: var(--secondary-green);
+            color: white;
+            border-color: var(--secondary-green);
+        }
+
+        .scheme-btn-primary:hover {
+            background: #147d50;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(28, 124, 84, 0.3);
+        }
+
+        .scheme-btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .scheme-btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Elderly Mode - Text Magnification (30% increase) */
+        body.elderly-mode .magnifiable {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: help;
+        }
+
+        body.elderly-mode .magnifiable:hover {
+            transform: scale(1.3);
+            font-weight: 700;
+            z-index: 100;
+            position: relative;
+            background: var(--bg-card);
+            padding: 0.375rem 0.75rem;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px var(--shadow-hover);
+            border: 2px solid var(--secondary-green);
+        }
+
+        /* Elderly Mode - Increased Contrast (WCAG AAA - 7:1) */
+        [data-elderly="true"] {
+            --text-primary: #000000;
+            --text-secondary: #3d3d3d;
+        }
+
+        [data-theme="dark"][data-elderly="true"] {
+            --text-primary: #FFFFFF;
+            --bg-primary: #032661;
+            --bg-secondary: #0d0d0d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                gap: 1rem;
+            }
+
+            .toggle-label {
+                font-size: 0.75rem;
+                min-width: 80px;
+            }
+
+            .logo-main {
+                font-size: 1.25rem;
+            }
+
+            .scheme-header {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            border: 5px solid var(--glass-border);
+            border-top-color: var(--secondary-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading p {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Trust Indicators */
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(28, 124, 84, 0.1);
+            border: 1px solid rgba(28, 124, 84, 0.2);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--secondary-green);
+            font-weight: 600;
+        }
+
+        .trust-badge::before {
+            content: '🔒';
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-container"></div>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-emblem">
+                    <img src="1769771685676.png" alt="image">
+                </div>
+                <div class="logo">
+                    <div class="logo-main magnifiable">Scheme साथी</div>
+                    <div class="logo-sub magnifiable">Assisting Citizens of India</div>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="toggle-container">
+                    <span class="toggle-label magnifiable">Dark Mode</span>
+                    <div class="toggle-switch dark-mode-toggle" id="darkModeToggle">
+                        <span class="toggle-icon moon">🌙</span>
+                        <span class="toggle-icon sun">☀️</span>
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="toggle-container">
+                    <span class="toggle-label magnifiable">Elderly Mode</span>
+                    <div class="toggle-switch elderly-toggle" id="elderlyToggle">
+                        <span class="toggle-icon old">👴</span>
+                        <span class="toggle-icon young">👦</span>
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-subtitle magnifiable" style="color:#f69e07; opacity:0.8;">सरकारी योजनाएँ</div>
+            <h1 style="color:#f5f5f5; opacity:0.85;">Discover Your Benefits</h1>
+            <p class="magnifiable">Access government schemes tailored to your profile. Transparent, inclusive, and
+                designed for every citizen of India.</p>
+
+        </section>
+
+        <div class="form-container">
+            <h2 class="form-title magnifiable">Check Your Eligibility</h2>
+            <p class="form-subtitle magnifiable">Fill in your details to discover schemes available for you</p>
+            <form id="benefitForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="magnifiable">Name (नाम)</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="magnifiable">Age (आयु)</label>
+                        <input type="number" id="age" placeholder="Enter your age" required min="1" max="120">
+                    </div>
+                    <div class="form-group">
+                        <label class="magnifiable">Monthly Income (मासिक आय)</label>
+                        <input type="number" id="income" placeholder="₹" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="magnifiable">State (राज्य)</label>
+                        <select id="state" required>
+                            <option value="">Select State</option>
+                            <option value="UP">Uttar Pradesh</option>
+                            <option value="MH">Maharashtra</option>
+                            <option value="DL">Delhi</option>
+                            <option value="KA">Karnataka</option>
+                            <option value="TN">Tamil Nadu</option>
+                            <option value="GJ">Gujarat</option>
+                            <option value="RJ">Rajasthan</option>
+                            <option value="WB">West Bengal</option>
+                            <option value="UK">Uttarakhand</option>
+                            <option value="HP">Himachal Pradesh</option>
+                            <option value="JK">Jammu and Kashmir</option>
+                            <option value="PB">Punjab</option>
+                            <option value="BR">Bihar</option>
+                            <option value="JH">Jharkhand</option>
+                            <option value="CG">Chhattisgarh</option>
+                            <option value="MP">Madhya Pradesh</option>
+                            <option value="OR">Odisha</option>
+                            <option value="AS">Assam</option>
+                            <option value="KL">Kerala</option>
+                            <option value="TS">Telangana</option>
+                            <option value="AP">Andhra Pradesh</option>
+                            <option value="SC">Sikkim</option>
+                            <option value="AN">Andaman and Nicobar Islands</option>
+                            <option value="LA">Ladakh</option>
+                            <option value="LD">Lakshadweep</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="magnifiable">Category (श्रेणी)</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="general">General</option>
+                            <option value="ews">General EWS</option>
+                            <option value="disabled">PWD</option>
+                            <option value="obc">OBC</option>
+                            <option value="sc">SC</option>
+                            <option value="st">ST</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="magnifiable">Occupation (व्यवसाय)</label>
+                        <input type="text" id="occupation" placeholder="e.g. Farmer, Student, Business" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span class="magnifiable">Find My Benefits</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p class="magnifiable">Analyzing your profile and searching government schemes...</p>
+        </div>
+
+        <div class="results" id="results">
+            <div class="results-header">
+                <h2 class="magnifiable">Your Eligible Schemes</h2>
+                <p class="magnifiable">Based on your profile, here are the schemes you can apply for</p>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <div>
+                        <h3 class="scheme-title magnifiable">PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)</h3>
+                    </div>
+                    <span class="scheme-badge magnifiable">Central Scheme</span>
+                </div>
+                <div class="scheme-details">
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Eligibility Criteria</h4>
+                        <ul>
+                            <li><span class="magnifiable">Farmer with cultivable land ownership</span></li>
+                            <li><span class="magnifiable">Annual income below ₹2,00,000</span></li>
+                            <li><span class="magnifiable">Valid Aadhaar card linked to bank account</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Benefits Provided</h4>
+                        <ul>
+                            <li><span class="magnifiable">₹6,000 per year in 3 equal installments</span></li>
+                            <li><span class="magnifiable">Direct Bank Transfer (DBT) to your account</span></li>
+                            <li><span class="magnifiable">No middlemen or agents required</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Application Process</h4>
+                        <ul>
+                            <li><span class="magnifiable">Visit official portal: pmkisan.gov.in</span></li>
+                            <li><span class="magnifiable">Register using Aadhaar number</span></li>
+                            <li><span class="magnifiable">Upload land ownership documents</span></li>
+                            <li><span class="magnifiable">Link your bank account for payments</span></li>
+                            <li><span class="magnifiable">Track status online after submission</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="scheme-cta">
+                    <a href="#" class="scheme-btn scheme-btn-primary magnifiable">Apply Now</a>
+                    <a href="#" class="scheme-btn scheme-btn-secondary magnifiable">Learn More</a>
+                </div>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <div>
+                        <h3 class="scheme-title magnifiable">Ayushman Bharat - PM-JAY</h3>
+                    </div>
+                    <span class="scheme-badge magnifiable">Central Scheme</span>
+                </div>
+                <div class="scheme-details">
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Eligibility Criteria</h4>
+                        <ul>
+                            <li><span class="magnifiable">BPL family or listed in SECC 2011 database</span></li>
+                            <li><span class="magnifiable">Annual family income below ₹5,00,000</span></li>
+                            <li><span class="magnifiable">No existing health insurance coverage</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Benefits Provided</h4>
+                        <ul>
+                            <li><span class="magnifiable">₹5 lakh health coverage per family per year</span></li>
+                            <li><span class="magnifiable">Cashless treatment at 25,000+ empaneled hospitals</span></li>
+                            <li><span class="magnifiable">Coverage for secondary and tertiary care
+                                    hospitalization</span></li>
+                            <li><span class="magnifiable">No cap on family size or age</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Application Process</h4>
+                        <ul>
+                            <li><span class="magnifiable">Check eligibility at pmjay.gov.in</span></li>
+                            <li><span class="magnifiable">Visit nearest Common Service Center (CSC)</span></li>
+                            <li><span class="magnifiable">Get Ayushman Card issued with Aadhaar</span></li>
+                            <li><span class="magnifiable">Use card at any empaneled hospital</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="scheme-cta">
+                    <a href="#" class="scheme-btn scheme-btn-primary magnifiable">Apply Now</a>
+                    <a href="#" class="scheme-btn scheme-btn-secondary magnifiable">Learn More</a>
+                </div>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <div>
+                        <h3 class="scheme-title magnifiable">Pradhan Mantri Mudra Yojana (PMMY)</h3>
+                    </div>
+                    <span class="scheme-badge magnifiable">Central Scheme</span>
+                </div>
+                <div class="scheme-details">
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Eligibility Criteria</h4>
+                        <ul>
+                            <li><span class="magnifiable">Small business owner or aspiring entrepreneur</span></li>
+                            <li><span class="magnifiable">Non-corporate, non-farm income-generating activities</span>
+                            </li>
+                            <li><span class="magnifiable">Loan requirement up to ₹10 lakh</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Benefits Provided</h4>
+                        <ul>
+                            <li><span class="magnifiable">Shishu Category: Loans up to ₹50,000</span></li>
+                            <li><span class="magnifiable">Kishore Category: ₹50,001 to ₹5,00,000</span></li>
+                            <li><span class="magnifiable">Tarun Category: ₹5,00,001 to ₹10,00,000</span></li>
+                            <li><span class="magnifiable">Low interest rates with no collateral requirement</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="magnifiable">Application Process</h4>
+                        <ul>
+                            <li><span class="magnifiable">Visit nearest bank or NBFC branch</span></li>
+                            <li><span class="magnifiable">Submit business plan and identity proof</span></li>
+                            <li><span class="magnifiable">Download application from udyamimitra.in</span></li>
+                            <li><span class="magnifiable">Loan sanctioned within 2-3 weeks</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="scheme-cta">
+                    <a href="#" class="scheme-btn scheme-btn-primary magnifiable">Apply Now</a>
+                    <a href="#" class="scheme-btn scheme-btn-secondary magnifiable">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const elderlyToggle = document.getElementById('elderlyToggle');
+        const body = document.body;
+        const html = document.documentElement;
+
+        // Check saved preferences
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.setAttribute('data-theme', 'dark');
+            darkModeToggle.classList.add('active');
+        }
+
+        if (localStorage.getItem('elderlyMode') === 'true') {
+            body.classList.add('elderly-mode');
+            html.setAttribute('data-elderly', 'true');
+            elderlyToggle.classList.add('active');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            darkModeToggle.classList.toggle('active');
+            const isDark = darkModeToggle.classList.contains('active');
+            html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('darkMode', isDark);
+        });
+
+        elderlyToggle.addEventListener('click', () => {
+            elderlyToggle.classList.toggle('active');
+            body.classList.toggle('elderly-mode');
+            const isElderly = body.classList.contains('elderly-mode');
+            html.setAttribute('data-elderly', isElderly ? 'true' : 'false');
+            localStorage.setItem('elderlyMode', isElderly);
+        });
+
+        // Form Submission
+        const form = document.getElementById('benefitForm');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Gather Data
+            const formData = {
+                name: document.getElementById('name').value,
+                age: parseInt(document.getElementById('age').value),
+                income: parseFloat(document.getElementById('income').value),
+                occupation: document.getElementById('occupation').value,
+                state: document.getElementById('state').value,
+                disability: "No", // Simplified for now
+                category: document.getElementById('category').value
+            };
+
+            // UI Feedback
+            results.classList.remove('show');
+            loading.classList.add('show');
+            results.innerHTML = '<div class="results-header"><h2 class="magnifiable">Your Eligible Schemes</h2><p class="magnifiable">Based on your profile, here are the schemes you can apply for</p></div>'; // Reset
+
+            try {
+                // 1. Send to Data Agent (Store)
+                await fetch("http://localhost:8000/api/store-user", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                });
+
+                // 2. Get Recommendations
+                const response = await fetch("http://localhost:8000/api/recommend", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                loading.classList.remove('show');
+                results.classList.add('show');
+
+                if (data.results && data.results.length > 0) {
+                    data.results.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'scheme-card';
+
+                        // Handle both simple explanation (from Simplifier) and standard fields
+                        const explanation = item.simple_explanation ||
+                            (item.benefits ? item.benefits.join('<br>') : 'No details available');
+
+                        card.innerHTML = `
+                            <div class="scheme-header">
+                                <div><h3 class="scheme-title magnifiable">${item.title}</h3></div>
+                                <span class="scheme-badge magnifiable">Match: ${Math.round(item.match_score * 100)}%</span>
+                            </div>
+                            <div class="scheme-details">
+                                <div class="detail-section">
+                                    <h4 class="magnifiable">Why this is for you</h4>
+                                    <p class="magnifiable" style="font-size: 1.1rem; line-height: 1.6;">${explanation.replace(/\n/g, '<br>')}</p>
+                                </div>
+                            </div>
+                            <div class="scheme-cta">
+                                <a href="#" class="scheme-btn scheme-btn-primary magnifiable">Apply Now</a>
+                            </div>
+                        `;
+                        results.appendChild(card);
+                    });
+                } else {
+                    const msg = data.message || "No specific schemes found for your criteria at this moment.";
+                    results.innerHTML += `<p style="text-align:center; font-size:1.2rem; color: var(--text-primary); margin-top: 2rem;">${msg}</p>`;
+                }
+
+                results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            } catch (error) {
+                console.error(error);
+                loading.classList.remove('show');
+                alert("Error connecting to the AI Backend. Please make sure the server is running (python main.py).");
+            }
+        });
+
+        // Add magnifiable class to all text elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, label, button span, li span, a, div.logo-main, div.logo-sub');
+            textElements.forEach(el => {
+                if (!el.classList.contains('magnifiable')) {
+                    el.classList.add('magnifiable');
+                }
+            });
+        });
+    </script>
+    <script src="chat.js"></script>
+</body>
+
+</html>
