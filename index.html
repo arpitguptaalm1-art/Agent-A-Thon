@@ -1157,13 +1157,16 @@
             localStorage.setItem('elderlyMode', isElderly);
         });
 
-        // Form Submission
-        const form = document.getElementById('benefitForm');
-        const loading = document.getElementById('loading');
-        const results = document.getElementById('results');
-
-        // Configuration: Change this to your PC's IP (e.g., http://192.168.1.5:8000) if testing on a phone.
+        // --- CONFIGURATION ---
+        // 1. If testing LOCALLY: Use "http://localhost:8000"
+        // 2. If using NETLIFY: You MUST use an HTTPS tunnel (like ngrok) or deploy to Render.
+        //    Example: "https://your-tunnel-id.ngrok-free.app"
         const API_BASE_URL = "http://localhost:8000";
+
+        if (window.location.protocol === 'https:' && API_BASE_URL.startsWith('http:')) {
+            console.warn("MIXED CONTENT WARNING: Netlify is HTTPS, but your API is HTTP. This will be blocked by the browser.");
+        }
+
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -1240,7 +1243,14 @@
             } catch (error) {
                 console.error(error);
                 loading.classList.remove('show');
-                alert("Error connecting to the AI Backend. Please make sure the server is running (python main.py).");
+
+                let errorMsg = "Error connecting to the AI Backend.";
+                if (window.location.protocol === 'https:' && API_BASE_URL.startsWith('http:')) {
+                    errorMsg += "\n\nCRITICAL: Netlify (HTTPS) cannot talk to a local server (HTTP). \n\nPlease use ngrok to get an HTTPS URL or test by opening index.html directly from your computer.";
+                } else {
+                    errorMsg += "\n\nPlease make sure the server is running (python main.py).";
+                }
+                alert(errorMsg);
             }
         });
 
